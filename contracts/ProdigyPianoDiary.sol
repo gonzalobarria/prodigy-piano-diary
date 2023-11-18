@@ -80,7 +80,6 @@ contract ProdigyPianoDiary {
     ) public view returns (Sheet[] memory) {
         require(_composerIndex < composers.length, "Composer not found");
 
-        // return composerSheets[_composerIndex];
         uint256[] memory composerSheetsIdx = composerSheets[_composerIndex];
         Sheet[] memory composerSheetsTmp = new Sheet[](composerSheetsIdx.length);
 
