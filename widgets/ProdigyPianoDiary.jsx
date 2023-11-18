@@ -5,6 +5,11 @@ const { getNormalDate, ppdContract, ppdAbi } = VM.require(
   "beachsunandrockandroll.near/widget/utils"
 );
 
+const Wrapper = styled.div`
+  background-color: #e7e1db;
+  height: 100%;
+`;
+
 State.init({
   visibleObj: "userSheets",
 });
@@ -42,7 +47,7 @@ if (state.sender === undefined) {
 }
 
 return (
-  <>
+  <Wrapper>
     <Widget src={`beachsunandrockandroll.near/widget/header`} />
     {!!state.sender ? (
       <>
@@ -51,7 +56,15 @@ return (
         )}
       </>
     ) : (
-      <h1 class="text-center p-5">Welcome to Prodigy Piano Diary</h1>
+      <div class="text-center">
+        <h1 class="fw-bold pt-5">Welcome to Prodigy Piano Diary</h1>
+        <h3>Transformative Practice for Pianists</h3>
+        <img
+          src="https://raw.githubusercontent.com/gonzalobarria/prodigy-piano-diary/master/public/images/piano-hand.png"
+          alt="PPD"
+          class="pt-3 pb-5"
+        />
+      </div>
     )}
     {user !== "" && (
       <div class="mt-4 p-3">
@@ -107,5 +120,5 @@ return (
           }}
         />
       )}
-  </>
+  </Wrapper>
 );
