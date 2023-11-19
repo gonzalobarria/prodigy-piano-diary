@@ -44,9 +44,8 @@ const addRecord = () => {
 return (
   <>
     <div>
-      <div>ShhetIdx: --{sheetIdx}--</div>
       <input
-        className="form-control m-2 p-2"
+        className="form-control mt-2 mb-3 mx-2 p-2"
         type="number"
         id="phraseNumber"
         name="phraseNumber"
@@ -68,26 +67,18 @@ return (
         }}
       />
       <Typeahead
-        className="p-2"
+        className="p-2 "
         options={state.studyType}
-        // multiple
         onChange={(value) => {
           setStudyT(getIdxFromArray(state.studyType, value[0]));
-          // State.update({
-          //   studyType: getIdxFromArray(state.studyType, value[0]),
-          // });
         }}
         placeholder="Select Type of Study"
       />
       <Typeahead
         className="p-2"
         options={state.focusType}
-        // multiple
         onChange={(value) => {
           setFocusT(getIdxFromArray(state.focusType, value[0]));
-          // State.update({
-          //   focusType: getIdxFromArray(state.focusType, value[0]),
-          // });
         }}
         placeholder="Select Type of Focus"
       />
@@ -103,8 +94,15 @@ return (
           setMinutes(event.target.value);
         }}
       />
-      <button onClick={addRecord}>Add Record</button>
-      <button onClick={() => setAddRecord(false)}>Close</button>
+      <div class="  p-2">
+        <button onClick={addRecord}>Add Record</button>
+        <button
+          onClick={() => setAddRecord(false)}
+          class="btn btn-outline-secondary"
+        >
+          Close
+        </button>
+      </div>
     </div>
   </>
 );

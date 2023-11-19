@@ -17,7 +17,7 @@ return (
     <div class="card w-96 bg-base-100 shadow-xl">
       <img src={imgURL} alt={title} />
       <div class="card-body">
-        <h2 class="card-title">{title}</h2>
+        <h4 class="card-title">{title}</h4>
         <p>{desc}</p>
         {buttonTitle && (
           <div class="justify-end card-actions">

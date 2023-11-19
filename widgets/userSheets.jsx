@@ -41,14 +41,13 @@ if (state.sender === undefined) {
 }
 
 const GridWrap = styled.div`
-max-width: 900px;
 
 .gap-4 {
     gap: 1rem;
 }
 
 .grid-cols-2 {
-    grid-template-columns: repeat(3,minmax(0,1fr));
+    grid-template-columns: repeat(4,minmax(0,1fr));
 }
 .grid {
     display: grid;
@@ -56,11 +55,13 @@ max-width: 900px;
   `;
 
 return (
-  <>
-    {state.userSheets.length === 0 && (
-      <h3 class="text-center">No Sheets Founded</h3>
-    )}
-    <button onClick={() => setAddSheet(true)}>New Sheet</button>
+  <div class="px-3 py-5">
+    <h3 class="text-center">
+      {state.userSheets.length === 0 ? "No Sheets Founded" : "My Sheets"}
+    </h3>
+    <button onClick={() => setAddSheet(true)} class="mb-4 btn btn-primary">
+      New Sheet
+    </button>
     {addSheet ? (
       <Widget
         src={`beachsunandrockandroll.near/widget/addSheet`}
@@ -85,5 +86,5 @@ return (
         </div>
       </GridWrap>
     )}
-  </>
+  </div>
 );

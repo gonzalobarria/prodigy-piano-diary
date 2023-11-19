@@ -71,34 +71,40 @@ if (state.sender === undefined) {
 }
 
 return (
-  <>
+  <div class="px-3 py-5">
+    <a href="#" onClick={back} class="text-underline pb-4">
+      &lt;- Back
+    </a>
     <h2>{state.sheet.name}</h2>
     <p>Created At: {state.sheet.createdAt}</p>
-    {state.sheet.dataUri && (
-      <a href="#" onClick={() => setShowImg(!showImg)}>
-        Show/Hide Sheet
-      </a>
-    )}
-    <div className="mt-2">
-      {showImg && state.sheet.dataUri && (
-        <img
-          src={`https://ipfs.near.social/ipfs/${state.sheet.dataUri}`}
-          alt="uploaded"
-        />
-      )}
-    </div>
-    <button onClick={back}>Back</button>
-    <button
-      onClick={() => {
-        setAddRecord(true);
-        setSheetIdx(i);
-      }}
-    >
-      New Record
-    </button>
-
-    {addRecord ? (
+    {!addRecord && (
       <>
+        {state.sheet.dataUri && (
+          <a href="#" onClick={() => setShowImg(!showImg)}>
+            Show/Hide Sheet
+          </a>
+        )}
+        <div className="mt-2">
+          {showImg && state.sheet.dataUri && (
+            <img
+              src={`https://ipfs.near.social/ipfs/${state.sheet.dataUri}`}
+              alt="uploaded"
+            />
+          )}
+        </div>
+        <button
+          onClick={() => {
+            setAddRecord(true);
+            setSheetIdx(i);
+          }}
+        >
+          New Record
+        </button>
+      </>
+    )}
+    {addRecord ? (
+      <div class="pt-2 pb-2">
+        <h5 class="text-center pb-2">Fill the Form to Add a new Record</h5>
         <Widget
           src={`beachsunandrockandroll.near/widget/addRecord`}
           props={{
@@ -106,11 +112,11 @@ return (
             sheetIdx,
           }}
         />
-      </>
+      </div>
     ) : (
       state.records && (
         <>
-          <h4 class="text-center">Record List</h4>
+          <h4 class="text-center pt-4">Record List</h4>
           <div class="mt-4">
             <table className="table table-bordered table-hover table-responsive bg-light p-3 shadow-lg rounded">
               <thead className="thead-dark">
@@ -118,9 +124,9 @@ return (
                   <th scope="col">Phrase Number</th>
                   <th scope="col">SubPhrase Number</th>
                   <th scope="col">Qty Minutes</th>
-                  <th scope="col">Mensaje</th>
                   <th scope="col">Study Type</th>
                   <th scope="col">Focus Type</th>
+                  <th scope="col">Is All Sheet?</th>
                   <th scope="col">Created at</th>
                 </tr>
               </thead>
@@ -146,5 +152,5 @@ return (
         </>
       )
     )}
-  </>
+  </div>
 );

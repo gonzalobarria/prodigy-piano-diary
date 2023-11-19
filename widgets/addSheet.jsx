@@ -61,6 +61,7 @@ useEffect(() => {
 return (
   <>
     <div>
+      <h5 class="text-center pb-2">Fill the Form to Add a new Sheet</h5>
       <input
         className="form-control m-2 p-2"
         type="text"
@@ -79,9 +80,9 @@ return (
         onChange={(value) => {
           setComposerIdx(0);
         }}
-        placeholder="Choose a tag to filter..."
+        placeholder="Select Composer"
       />
-      <div>
+      <div class="px-2 pb-2">
         Sheet upload: <br />
         <IpfsImageUpload image={state.img} />
       </div>
@@ -96,14 +97,17 @@ return (
           setDifficulty(event.target.value);
         }}
       />
-      <button onClick={addSheet}>Add Sheet</button>
-      <button
-        onClick={() => {
-          setAddSheet(false);
-        }}
-      >
-        Close
-      </button>
+      <div class="px-2 pt-2">
+        <button onClick={addSheet}>Add Sheet</button>
+        <button
+          onClick={() => {
+            setAddSheet(false);
+          }}
+          class="btn btn-outline-secondary"
+        >
+          Close
+        </button>
+      </div>
     </div>
   </>
 );

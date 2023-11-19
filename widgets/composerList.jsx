@@ -37,12 +37,13 @@ if (state.sender === undefined) {
 }
 
 const GridWrap = styled.div`
+
 .gap-4 {
     gap: 1rem;
 }
 
 .grid-cols-2 {
-    grid-template-columns: repeat(2,minmax(0,1fr));
+    grid-template-columns: repeat(4,minmax(0,1fr));
 }
 .grid {
     display: grid;
@@ -50,17 +51,24 @@ const GridWrap = styled.div`
   `;
 
 return (
-  <>
-    {state.composers.length === 0 && (
-      <h2 class="text-center">No Composers Founded</h2>
+  <div class="px-3 py-5">
+    <h3 class="text-center">
+      {state.composers.length === 0 ? "No Composers Found" : "Composer List"}
+    </h3>
+    {!addComposer && (
+      <button onClick={() => setAddComposer(true)} class="mb-4 btn btn-primary">
+        New Composer
+      </button>
     )}
-    <button onClick={() => setAddComposer(true)}>New Composer</button>
-    <button onClick={back}>Back</button>
+
     {addComposer ? (
-      <Widget
-        src={`beachsunandrockandroll.near/widget/addComposer`}
-        props={{ setAddComposer }}
-      />
+      <div class="pt-2 pb-2">
+        <h5 class="text-center pb-2">Fill the Form to Add a Composer</h5>
+        <Widget
+          src={`beachsunandrockandroll.near/widget/addComposer`}
+          props={{ setAddComposer }}
+        />
+      </div>
     ) : (
       <GridWrap>
         <div class="grid gap-4 grid-cols-2">
@@ -70,15 +78,11 @@ return (
               props={{
                 title: composer.name,
                 desc: composer.birtdate,
-                // buttonTitle: "View Sheets",
-                // action: () => {
-                //   action(i);
-                // },
               }}
             />
           ))}
         </div>
       </GridWrap>
     )}
-  </>
+  </div>
 );
